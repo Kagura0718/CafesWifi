@@ -1,0 +1,131 @@
+
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/styles.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- bootstrap css -->
+
+{% endblock %}
+
+{% block content %}
+
+
+ <!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><b>Cafe & Wifi</b></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+                <span class="sr-only">Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar2"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav">
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/">Home</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/cafes">Cafe List</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" aria-current="page" href="/add">Add Cafe</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="header">
+<h1 style="color:white"><b>Update Cafe </b></h1>
+</div>
+
+<body>
+
+<div class="container">
+     <form action="{{ url_for('edit') }}" method="POST">
+         <div class="edit_form">
+             <input hidden="hidden" name="id" value="{{cafe.id}}">
+
+             <p style="color:white"><b>Cafe Name:</b>
+            <input name="name" type="text" value="{{cafe.name}}" style="color:grey"></p>
+
+             <p style="color:white"><b>Image URL:</b>
+            <input name="img_url" type="url" value="{{cafe.img_url}}" style="color:grey"></p>
+
+             <p style="color:white"><b>Location:</b>
+                <input name="location" type="text" value="{{cafe.location}}" style="color:grey">
+                 <b>URL on Google Maps:</b>
+                 <input name="map_url" type="url" value="{{cafe.map_url}}" style="color:grey">
+             </p>
+
+
+             <p style="color:white"><b>Number of Seats:</b>
+            <input name="seats" type="text" value="{{cafe.seats}}" style="color:grey"></p>
+
+             <p style="color:white"><b>Has Toilet:</b>
+                 <select name="has_toilet"  style="color:grey">
+                     {% if cafe.has_toilet %}
+                         <option value="1" selected>Yes</option>
+                         <option value="0">Nope</option>
+                     {% else %}
+                        <option value="1" >Yes</option>
+                         <option value="0" selected>Nope</option>
+                     {% endif %}
+                 </select>
+             </p>
+
+             <p style="color:white"><b>Has Wifi:</b>
+                 <select name="has_wifi"  style="color:grey">
+                     {% if cafe.has_wifi %}
+                         <option value="1" selected>Yes</option>
+                         <option value="0">Nope</option>
+                     {% else %}
+                        <option value="1" >Yes</option>
+                         <option value="0" selected>Nope</option>
+                     {% endif %}
+                 </select>
+             </p>
+
+             <p style="color:white"><b>Has Sockets:</b>
+                 <select name="has_sockets"  style="color:grey">
+                     {% if cafe.has_sockets %}
+                         <option value="1" selected>Yes</option>
+                         <option value="0">Nope</option>
+                     {% else %}
+                        <option value="1" >Yes</option>
+                         <option value="0" selected>Nope</option>
+                     {% endif %}
+                 </select>
+             </p>
+
+              <p style="color:white"><b>Can Take Calls:</b>
+                 <select name="can_take_calls"  style="color:grey">
+                     {% if cafe.can_take_calls %}
+                         <option value="1" selected>Yes</option>
+                         <option value="0">Nope</option>
+                     {% else %}
+                        <option value="1" >Yes</option>
+                         <option value="0" selected>Nope</option>
+                     {% endif %}
+                 </select>
+             </p>
+
+             <p style="color:white"><b> Coffee Price:</b>
+            <input name="price" type="text" value="{{cafe.coffee_price}}" style="color:grey"></p>
+         <button type="submit" class="btn btn-warning">Change</button>
+         </div>
+     </form>
+</div>
+</body>
+
+<footer class="footer text-faded text-center py-5">
+            <div class="container"><p class="m-0 small">Copyright &copy; Feichun Yang's Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+</body>
+{% endblock %}
