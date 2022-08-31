@@ -10,7 +10,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap(app)
 
-server= app.server
 
 ##Connect to Database
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///cafes.db"
