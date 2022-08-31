@@ -145,6 +145,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    width: 100px;
 }
 
 /*鼠标移动到选项上修改背景颜色 */
@@ -158,6 +159,14 @@ li {
 
 li:last-child {
     border-right: none;
+}
+
+.search_cafe{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    height: 30px;
 }
 
 .card {
@@ -186,9 +195,25 @@ li:last-child {
   padding: 60px;
   text-align: center;
   background: orange;
-  color: white;
+  color: #ffc107;
   font-size: 30px;
 }
+
+.modal-header{
+    border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    padding-top: 30px;
+    padding-left:30px;
+    background-color: #333;
+    color: #ffc107;
+
+}
+
+#deleteModalLabel{
+    font-size: 25px;
+}
+
+
 
 
 

@@ -32,13 +32,15 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/">Home</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/cafes">Cafe List</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" aria-current="page" href="/add">Add Cafe</a></li>
+                <li class="nav-item px-lg-4 search_cafe"><input class="form-control" id="myInput" type="text" placeholder="Search..">
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 <body>
-<section class="page-section cta" id="cafes">
+<div class="page-section cta" id="cafes">
     <div class="container">
 
         {% for cafe in cafe_list %}
@@ -71,11 +73,38 @@
                         <p class="coffee_price" style="color:rgba(255,255,255,.55)">Coffee Price: {{cafe['coffee_price']}}</p>
                         <p>
                             <button class="btn warning-btn">
-                                <a href="{{ url_for('edit', id=cafe.id) }}" class="btn"><i style="font-size:15px">&#9998;</i></a>
+                                <a href="{{ url_for('edit', id=cafe.id) }}"><i style="font-size:15px">&#9998;</i></a>
                             </button>
-                            <button class="btn warning-btn">
-                                <a href="{{ url_for('delete', id=cafe.id) }}" class="btn"><i style="font-size:15px">&#10007;</i></a>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn warning-btn" data-toggle="modal" data-target="#deleteModal{{cafe.id}}">
+                              <i style="font-size:15px">&#10007;</i>
                             </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal{{cafe.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{cafe.id}}" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{cafe.id}}">Delete the Cafe</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p style="color:grey">
+                                          Are you sure you want to remove <b>{{ cafe.name }}</b> from the list?
+                                      </p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:grey">No</button>
+                                    <button class="btn warning-btn">
+                                        <a href="{{ url_for('delete', id=cafe.id) }}">Yes</a>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         </p>
                     </div>
                 </div>
@@ -83,11 +112,12 @@
         </div>
         <br>
         {% endfor%}
+        </div>
 
           <p><a href="/" style="float:right">Return to Homepage</a></p>
-
     </div>
-</section>
+</div>
+
 
 <nav aria-label="Page navigation">
   <ul class="pagination justify-content-center">
@@ -106,6 +136,10 @@
             <div class="container"><p class="m-0 small">Copyright &copy; Feichun Yang's Website 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

@@ -9,3 +9,11 @@ window.addEventListener('DOMContentLoaded', event => {
     listHoursArray[new Date().getDay()].classList.add(('today'));
 })
 
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#cafes h4").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
