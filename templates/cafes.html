@@ -32,7 +32,7 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/">Home</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/cafes">Cafe List</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" aria-current="page" href="/add">Add Cafe</a></li>
-                <li class="nav-item px-lg-4 search_cafe"><input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <li class="nav-item px-lg-4 search_cafe"><input class="form-control" id="myInput" type="text" placeholder="Search cafe or location">
                 </li>
             </ul>
         </div>
@@ -44,6 +44,7 @@
     <div class="container">
 
         {% for cafe in cafe_list %}
+
         <div class="card border border-light mb-3 rounded-pill" style="max-width:1200px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
@@ -72,14 +73,12 @@
                         </p>
                         <p class="coffee_price" style="color:rgba(255,255,255,.55)">Coffee Price: {{cafe['coffee_price']}}</p>
                         <p>
-                            <button class="btn warning-btn">
-                                <a href="{{ url_for('edit', id=cafe.id) }}"><i style="font-size:15px">&#9998;</i></a>
-                            </button>
+                             <a href="{{ url_for('edit', id=cafe.id) }}" role="button" class="btn warning-btn"><i style="font-size:15px">&#9998;</i></a>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn warning-btn" data-toggle="modal" data-target="#deleteModal{{cafe.id}}">
+                            <a type="button" class="btn warning-btn" data-toggle="modal" data-target="#deleteModal{{cafe.id}}">
                               <i style="font-size:15px">&#10007;</i>
-                            </button>
+                            </a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="deleteModal{{cafe.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{cafe.id}}" aria-hidden="true">
@@ -110,6 +109,7 @@
                 </div>
             </div>
         </div>
+
         <br>
         {% endfor%}
         </div>
@@ -145,5 +145,15 @@
         <script src="js/scripts.js"></script>
 </body>
 
+<script>
+    $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#cafes .card").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 {% endblock %}
